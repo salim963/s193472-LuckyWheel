@@ -40,7 +40,7 @@ class WonFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_wonFragment_to_mainFragment)
         }
 
-
+//
     }
 
     companion object {
