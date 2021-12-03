@@ -107,7 +107,7 @@ class PlayFragment : Fragment() {
 
                 AnimalsNameDashes.add(AnimalsName(' ', true))
             } else {
-                AnimalsNameDashes.add(AnimalsName('_', false))
+                AnimalsNameDashes.add(AnimalsName('_' , false))
             }
         }
         MyRecyclerView = view.findViewById(R.id.MyRecyclerView)
@@ -121,14 +121,12 @@ class PlayFragment : Fragment() {
         spineWheel()
         enterletter.setOnClickListener {
             GuessLetter()
+            spin.isEnabled = true
         }
-
-
-
     }
+
+
     fun GuessLetter() {
-
-
 
         val guess = guessbox.text.trim()
         if (guess.isEmpty()) {
@@ -142,6 +140,7 @@ class PlayFragment : Fragment() {
             lives--
             live.text.toString()
             live.setText(lives.toString())
+            Toast.makeText(context, "spin the wheel again the letter was wrong", Toast.LENGTH_SHORT).show()
 
             if (lives === 0) {
                 enterletter.isEnabled = false
@@ -164,7 +163,7 @@ class PlayFragment : Fragment() {
                 word.char = item
                 word.Guessed = true
                 Toast.makeText(context, "The letter was true", Toast.LENGTH_SHORT).show()
-               // AddPoints()
+                AddPoints()
             }
 
         }
@@ -191,6 +190,7 @@ class PlayFragment : Fragment() {
 
 
         spin.setOnClickListener() {
+
 
 
             /*** Move to GameLostFragment****/
@@ -224,10 +224,12 @@ class PlayFragment : Fragment() {
                     /** voice start **/
                     MediaPlayer()
                     enterletter.isEnabled = false
+
                 }
 
                 override fun onAnimationEnd(animation: Animation) {
                     enterletter.isEnabled = true
+                    spin.isEnabled = false
                     // we display the correct sector pointed by the triangle at the end of the rotate animation
                     resultwheel.text = getSector(360 - degree % 360)
                     print(getSector(360 - degree % 360))
