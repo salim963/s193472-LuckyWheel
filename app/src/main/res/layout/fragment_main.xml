@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back2"
-    tools:context=".MainFragment"
-    >
+    tools:context=".MainFragment">
 
     <TextView
         android:id="@+id/textView"
@@ -23,17 +22,17 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="13dp"
-        android:background="#D15807"
+        android:layout_width="412dp"
+        android:layout_height="102dp"
+        android:layout_marginBottom="382dp"
+        android:background="#E4813E"
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
         android:text="welcome to Lucky Wheel game"
         android:textColor="#330583"
         android:textSize="26dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/lottieAnimationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1. Spine the wheel and se what you will get."
-            android:textColor="#330583"
+            android:textColor="#7338DA"
             android:textSize="18dp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="0dp"
@@ -85,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2. you will get even a number of points , 'Ekstra turn' , 'Miss turn' or 'Bankrupt'."
-            android:textColor="#330583"
+            android:textColor="#587E2D"
             android:textSize="18dp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="0dp"
@@ -97,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3. The point you get will be add to your balance if you guess the right letter."
-            android:textColor="#330583"
+            android:textColor="#850B4A"
             android:textSize="18dp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="0dp"
@@ -109,7 +108,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="4. 'Extra turn' means you will get an extra live."
-            android:textColor="#330583"
+            android:textColor="#1126A3"
             android:textSize="18dp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="0dp"
@@ -121,7 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="5. 'miss turn ' means you will lose an live."
-            android:textColor="#330583"
+            android:textColor="#226565"
             android:textSize="18dp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="0dp"
@@ -133,7 +132,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="6. 'Bankrupt' means your balance is 0 ."
-            android:textColor="#330583"
+            android:textColor="#6D9C36"
             android:textSize="18dp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="0dp"
@@ -145,7 +144,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="7. You have at all 5 lives."
-            android:textColor="#330583"
+            android:textColor="#DAE110"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="537dp">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8. The word you have to guess is one of the animal names"
+            android:textColor="#3AC571"
             android:textSize="18dp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="0dp"
@@ -160,18 +171,32 @@
         android:id="@+id/startgame"
         android:layout_width="135dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="77dp"
+        android:layout_marginBottom="20dp"
         android:onClick="playgame"
-        android:text="Start game"
+        android:text="let's start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+
         tools:ignore="MissingConstraints,OnClick">
 
     </Button>
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView"
+        android:layout_width="178dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="83dp"
 
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/wheel"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

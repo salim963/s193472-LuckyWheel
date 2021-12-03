@@ -1,7 +1,6 @@
 package com.example.s193472_lucywheel
 
-import android.content.Context
-import android.content.Intent
+
 import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -20,13 +19,11 @@ import com.example.s193472_lucywheel.Data.AnimalsName
 import com.example.s193472_lucywheel.Data.MyMemory
 import java.util.*
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+
 
 
 class PlayFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
+
 
     private val sectors = arrayOf(
         "100", "Bankrupt", "2500", "Ekstra turn", "300", "500", "Miss turn"
@@ -38,22 +35,17 @@ class PlayFragment : Fragment() {
     private var degree = 0
     private var lastdegree = 0
     private val HALF_SECTOR = 360f / 7f / 2f
-
-    /** TextView lives**/
-    lateinit var live: TextView
-    lateinit var pointantal : TextView
-
     /** antal live at all **/
     var lives = 5
+    /** points to start with **/
     var points = 0
 
-
+    lateinit var live: TextView
+    lateinit var pointantal : TextView
     lateinit var wheel: ImageView
     lateinit var resultwheel: TextView
-
     lateinit var guessbox: EditText
     lateinit var spin: Button
-
     lateinit var enterletter: Button
     lateinit var randomWordDis: String
     lateinit var randomWord: String
@@ -65,25 +57,14 @@ class PlayFragment : Fragment() {
 
 
 
-
-
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_play, container, false)
     }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -95,10 +76,11 @@ class PlayFragment : Fragment() {
         resultwheel = view.findViewById(R.id.resultwheel)
         live = view.findViewById(R.id.live)
         pointantal = view.findViewById(R.id.pointantal)
-
         randomWord = MyAnimalsName.random().toString()
         randomWordDis = randomWord
         var randomWordletter = randomWord.toCharArray()
+
+
 
         for (i in randomWordletter) {
             if (i == ' ') {
@@ -114,8 +96,6 @@ class PlayFragment : Fragment() {
         MyRecyclerView.adapter = MyAdapter(AnimalsNameDashes)
 
 
-
-
         spineWheel()
         enterletter.setOnClickListener {
             GuessLetter()
@@ -123,6 +103,10 @@ class PlayFragment : Fragment() {
         }
     }
 
+
+
+
+    /** fun to guess the letter **/
 
     fun GuessLetter() {
 
@@ -132,14 +116,13 @@ class PlayFragment : Fragment() {
         }
         var guessedletter = guess.get(0)
         enterletter.isEnabled = false
-
+        /** if the letter not true**/
         if (!randomWordDis.contains(guessedletter, true)) {
-            // spin again
             lives--
             live.text.toString()
             live.setText(lives.toString())
             Toast.makeText(context, "spin the wheel again the letter was wrong", Toast.LENGTH_SHORT).show()
-
+           /** move to Lost Fragment **/
             if (lives === 0) {
                 enterletter.isEnabled = false
                 Navigation.findNavController(requireView())
@@ -151,12 +134,13 @@ class PlayFragment : Fragment() {
         var randomwordsletter = randomWord.toCharArray()
         for ((i, item) in randomwordsletter.withIndex()) {
             var word = AnimalsNameDashes.get(i)
-
+            /** if the letter already foun**/
             if (item === guessedletter && word.Guessed) {
                 Toast.makeText(context, "the letter   $guessedletter  is found", Toast.LENGTH_SHORT)
                     .show()
                 continue
             }
+            /** if the letter was true */
             if (item === guessedletter) {
                 word.char = item
                 word.Guessed = true
@@ -165,14 +149,14 @@ class PlayFragment : Fragment() {
             }
 
         }
-        ////update view with new guess chars
+        /** update view **/
         MyRecyclerView.adapter = MyAdapter(AnimalsNameDashes)
 
-        //check if the whole random word is guessed
+        /**check if the random Animals name is guessed**/
+
         var ifstillletters = AnimalsNameDashes.any { !it.Guessed }
         if (!ifstillletters) {
 
-            //user guessed the whole word correctly
             enterletter.isEnabled = false
             Toast.makeText(context, "You make it !!!", Toast.LENGTH_LONG).show()
             Navigation.findNavController(requireView())
@@ -212,7 +196,7 @@ class PlayFragment : Fragment() {
                 override fun onAnimationEnd(animation: Animation) {
                     enterletter.isEnabled = true
                     spin.isEnabled = false
-                    // we display the correct sector pointed by the triangle at the end of the rotate animation
+                    /**we display the correct sector at the end of the rotate animation**/
                     resultwheel.text = getSector(360 - degree % 360)
                     print(getSector(360 - degree % 360))
 
@@ -239,33 +223,19 @@ class PlayFragment : Fragment() {
                             live.setText(lives.toString())
 
                         }
-                        "Miss turn" -> {
-                            Toast.makeText(
+                        "Miss turn" -> { Toast.makeText(
                                 context, "You lost an attempt", Toast.LENGTH_SHORT).show()
                             lives -= 1
                             live.text.toString()
-                            live.text = lives.toString()
-                        }
-                        "100" -> {
-                            Toast.makeText(context, "You get 100", Toast.LENGTH_SHORT).show()
-                            // ADDpoint
-                        }
-                        "300" -> {
-                            Toast.makeText(context, "You get 300", Toast.LENGTH_SHORT).show()
-                            // ADDpoint
+                            live.text = lives.toString() }
 
-                        }
-                        "500" -> {
-                            Toast.makeText(context, "You get 500", Toast.LENGTH_SHORT).show()
-                            // ADDpoint
+                        "100" -> { Toast.makeText(context, "You get 100", Toast.LENGTH_SHORT).show() }
 
-                        }
-                        "2500" -> {
-                            Toast.makeText(context, "You get 2500", Toast.LENGTH_SHORT).show()
-                            // ADDpoint
+                        "300" -> { Toast.makeText(context, "You get 300", Toast.LENGTH_SHORT).show() }
 
-                        }
+                        "500" -> { Toast.makeText(context, "You get 500", Toast.LENGTH_SHORT).show() }
 
+                        "2500" -> { Toast.makeText(context, "You get 2500", Toast.LENGTH_SHORT).show() }
                     }
                 }
                 override fun onAnimationRepeat(animation: Animation) {}
@@ -274,6 +244,8 @@ class PlayFragment : Fragment() {
             wheel.startAnimation(rotateAnim)
         }
     }
+
+
 
     /**fun to get value from sectors**/
     fun getSector(degrees: Int): String? {
@@ -285,12 +257,9 @@ class PlayFragment : Fragment() {
             val end: Float = HALF_SECTOR * (i * 2 + 3)
             if (degrees >= start && degrees <= end) {
 
-                // so text is equals to sectors[i];
                 textfromwheel = sectors.get(i)
             }
             i++
-            // now we can test our Android Roulette Game 🙂
-            // That's all !
 
         } while (textfromwheel == null && i < sectors.size)
 
@@ -309,6 +278,8 @@ class PlayFragment : Fragment() {
             mp.start()
         }
     }
+
+
     fun AddPoints(){
         when {
             resultwheel.text.toString() == "100" -> {
@@ -333,18 +304,5 @@ class PlayFragment : Fragment() {
             }
         }
 
-       /* var TheNewPoints = resultwheel.text.toString()
-        var FinslPoints = TheNewPoints + pointantal
-
-        pointantal.text.toString()
-        pointantal.setText(FinslPoints)*/
-
-
     }
-
-
-
-
-
-
 }
