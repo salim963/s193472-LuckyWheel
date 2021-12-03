@@ -12,7 +12,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="28dp"
         android:layout_marginBottom="53dp"
         android:text="Salim Omar-s193472"
         android:textColor="#CF7608"
@@ -35,6 +35,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -83,7 +84,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2. you will get a number of points or 'Ekstra turn' or 'Miss turn' or 'Bankrupt'."
+            android:text="2. you will get even a number of points , 'Ekstra turn' , 'Miss turn' or 'Bankrupt'."
             android:textColor="#330583"
             android:textSize="18dp"
             android:textStyle="bold"
@@ -107,7 +108,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4. 'Extra turn' means you will get a extra 1 live."
+            android:text="4. 'Extra turn' means you will get an extra live."
             android:textColor="#330583"
             android:textSize="18dp"
             android:textStyle="bold"
@@ -119,7 +120,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5. 'miss turn ' means you will lose a 1 live."
+            android:text="5. 'miss turn ' means you will lose an live."
             android:textColor="#330583"
             android:textSize="18dp"
             android:textStyle="bold"
@@ -151,6 +152,7 @@
             tools:layout_editor_absoluteY="537dp">
 
         </TextView>
+
 
     </LinearLayout>
 
