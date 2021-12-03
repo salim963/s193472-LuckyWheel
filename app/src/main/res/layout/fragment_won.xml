@@ -21,15 +21,15 @@
 
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="369dp"
+            android:layout_width="415dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="16dp"
             android:autoText="false"
             android:freezesText="false"
-            android:text="♛♛♛♛♛♛♛           🎊  🎊  🎊  🎊 Congratulations YOU JUST WON THE GAME          🎉  🎉  🎉  🎉  "
+            android:text="♛♛♛♛♛♛♛            Congratulations YOU JUST WON THE GAME           🎉  🎉  🎉  🎉  "
             android:textAlignment="center"
-            android:textColor="@color/purple_700"
+            android:textColor="#4E12BA"
             android:textSize="48dp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,14 +48,27 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.825" />
 
+
+
         <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="352dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="170dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_rawRes="@raw/winner"
-             />
+
+            app:lottie_rawRes="@raw/winner11" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="170dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+
+            app:lottie_rawRes="@raw/winner11" />
+
+
 
 
     </LinearLayout>

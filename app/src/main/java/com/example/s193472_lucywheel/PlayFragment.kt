@@ -1,6 +1,7 @@
 package com.example.s193472_lucywheel
 
 import android.content.Context
+import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -28,7 +29,7 @@ class PlayFragment : Fragment() {
     private var param2: String? = null
 
     private val sectors = arrayOf(
-        "100", "Bankrupt", " 2500", "Ekstra turn", "300", "500", "Miss turn"
+        "100", "Bankrupt", "2500", "Ekstra turn", "300", "500", "Miss turn"
     )
 
 
@@ -45,9 +46,6 @@ class PlayFragment : Fragment() {
     /** antal live at all **/
     var lives = 5
     var points = 0
-
-    //var spineAndMinus = true
-    var spinTheWheel = true
 
 
     lateinit var wheel: ImageView
@@ -155,7 +153,7 @@ class PlayFragment : Fragment() {
             var word = AnimalsNameDashes.get(i)
 
             if (item === guessedletter && word.Guessed) {
-                Toast.makeText(context, "the letter is found: " + guessedletter, Toast.LENGTH_SHORT)
+                Toast.makeText(context, "the letter   $guessedletter  is found", Toast.LENGTH_SHORT)
                     .show()
                 continue
             }
@@ -190,22 +188,6 @@ class PlayFragment : Fragment() {
 
 
         spin.setOnClickListener() {
-
-
-
-            /*** Move to GameLostFragment****/
-
-
-            /*if (lives == -1) {
-                  //val tryagain = findViewById<Button>(R.id.tryagainlose)
-                  supportFragmentManager.beginTransaction()
-                      .add(R.id.maincontener, GameLostFragment())
-                      .commit()
-                  setVisible(true)
-                  // val dialog = GameLostFragment()
-                  //dialog.show(supportFragmentManager,"java.lang.Exception")
-             }*/
-
 
             /** Animation for wheel*/
             lastdegree = degree % 360
@@ -242,7 +224,8 @@ class PlayFragment : Fragment() {
                                 "You went bankrupt, your points now is 0",
                                 Toast.LENGTH_SHORT
                             ).show()
-                            // point =0
+                            points = 0
+                            pointantal.text = points.toString()
 
                         }
                         "Ekstra turn" -> {
@@ -261,7 +244,7 @@ class PlayFragment : Fragment() {
                                 context, "You lost an attempt", Toast.LENGTH_SHORT).show()
                             lives -= 1
                             live.text.toString()
-                            live.setText(lives.toString())
+                            live.text = lives.toString()
                         }
                         "100" -> {
                             Toast.makeText(context, "You get 100", Toast.LENGTH_SHORT).show()
@@ -327,11 +310,34 @@ class PlayFragment : Fragment() {
         }
     }
     fun AddPoints(){
-        var TheNewPoints = resultwheel.text.toString()
+        when {
+            resultwheel.text.toString() == "100" -> {
+                points += 100
+                pointantal.text = points.toString()
+            }
+            resultwheel.text.toString() == "300" -> {
+                points += 300
+                pointantal.text = points.toString()
+            }
+            resultwheel.text.toString() == "500" -> {
+                points += 500
+                pointantal.text = points.toString()
+            }
+            resultwheel.text.toString() == "2500" -> {
+                points += 2500
+                pointantal.text = points.toString()
+            }
+            resultwheel.text.toString() == "2500" -> {
+                points += 2500
+                pointantal.text = points.toString()
+            }
+        }
+
+       /* var TheNewPoints = resultwheel.text.toString()
         var FinslPoints = TheNewPoints + pointantal
 
         pointantal.text.toString()
-        pointantal.setText(FinslPoints)
+        pointantal.setText(FinslPoints)*/
 
 
     }
